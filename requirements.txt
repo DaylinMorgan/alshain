@@ -1,0 +1,6 @@
+entrypoints
+jinja2
+jsonschema
+numpy
+pandas
+altair

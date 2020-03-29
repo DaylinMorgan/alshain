@@ -1,2 +1,4 @@
-# alshain
-Increasing the compatibility and usefulness of altair. 
+# Alshain
+
+A simple conglomeration of scripts that are useful for improving the altair experience. 
+

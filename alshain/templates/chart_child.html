@@ -1,0 +1,34 @@
+{% extends "master.html" %}
+
+{% block title %}{{title}}{% endblock%}
+
+
+{% block content %}
+{% for chartid, chart in chart_dict.items() %}
+{% for name, value in chart.items() %}
+<h3> {{name}} </h3>
+<div class="figure">
+  <div id="{{chartid}}"> </div>
+</div>
+
+  <script>
+  (function(vegaEmbed) {
+      var spec = {{value}};
+      var embedOpt = {"renderer": "svg", "mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+			  + '<p>JavaScript Error: ' + error.message + '</p>'
+			  + "<p>This usually means there's a typo in your chart specification. "
+			  + "See the javascript console for the full traceback.</p>"
+			  + '</div>');
+	  throw error;
+      }
+      const el = document.getElementById('{{chartid}}');
+      vegaEmbed("#{{chartid}}", spec, embedOpt)
+          .catch(error => showError(el, error));
+  })(vegaEmbed);
+  </script>
+{% endfor %}
+{% endfor %}
+{% endblock %}

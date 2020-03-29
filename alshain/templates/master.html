@@ -1,0 +1,34 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    h1 {
+      text-align:center;
+        } 
+    h3 {
+	  text-align:center;
+      } 
+        .figure{ 
+        width:1000px;
+        margin: 0 auto;
+        display:block;
+        vertical-align:middle;
+        text-align:center;
+        }
+      .error {
+          color: red;
+      }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.0.0"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+  </head>
+  <body>
+    <h1> {% block title %}{% endblock%} </h1>
+    <hr>
+      {% block content %}{% endblock%}    
+
+
+
+  </body>
+ </html>
