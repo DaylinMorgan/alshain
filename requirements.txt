@@ -1,4 +1,3 @@
-entrypoints
 jinja2
 jsonschema
 numpy
