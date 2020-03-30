@@ -32,7 +32,18 @@ def splitall(path):
 #                         i = list_o_dir.index(entry.name)
 #                         return find_path(entry.path,list_o_dir[i:])          
                     
-                    
+def filename_gen(df):
+    """ Return a file name  
+   
+    """
+    columns = list(df.columns)
+    if len(columns) > 5:
+        columns = [col[:3].lower() for col in columns]
+        
+    filename = "_".join(columns) + "__" + str(df.shape[0])+"rows_" + str(df.shape[1])+"cols" +".json"
+    
+    return filename
+
 def find_path(directory,list_o_dir):
     if len(list_o_dir) == 1: 
         return os.path.join(directory,list_o_dir[0])
@@ -54,7 +65,7 @@ def find_path(directory,list_o_dir):
     
                     
                     
-def getURL(df, filename='source.json',return_df=False):
+def getURL(df, filename=None,return_df=False):
     """
     Generate json objects and return a url to inline display altair charts with large dataframes.
 
@@ -76,6 +87,9 @@ def getURL(df, filename='source.json',return_df=False):
     if not os.path.exists('./alshain_jsons'):
         os.mkdir('alshain_jsons')
 
+    if filename == None:
+        filename = filename_gen(df)
+        
     if base_url == None:
         tmp_path = find_path(os.getenv('HOME'),splitall(os.getcwd()))
         
