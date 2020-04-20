@@ -17,7 +17,7 @@ class Report(object):
         
         
         
-    def add_chart(self, chart, title=None):
+    def add_chart(self, chart, title=None, skip_df_check=False):
 
         """
         Make a master report in the form of an html of all altair chart objects. 
@@ -42,10 +42,10 @@ class Report(object):
         if title==None:
             title = 'Chart ' + num
         
-        
+        if not skip_df_check:
         #check if chart is defined by dataframe -> will this work if it is big? 
-        if not isinstance(chart.data, pd.DataFrame):
-            raise ValueError('Data in this chart object is not a pandas DataFrame, if using als.getURL() set return_df=True')
+            if not isinstance(chart.data, pd.DataFrame):
+                raise ValueError('Data in this chart object is not a pandas DataFrame, if using als.getURL() set return_df=True')
                           
             
         
