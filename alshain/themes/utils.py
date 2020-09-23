@@ -53,6 +53,16 @@ def bulk_theme_registration(themes):
     alt.themes.enable('my_default')
 
 def use_theme(theme):
+        """
+    Make a termporary theme by modifying one of the alshain themes. 
+
+    Parameters
+    -----------
+    chart : altair chart object 
+        object defining altair chart schema
+    theme : string
+        name of theme to test on chart 
+    """
 
     try:
         load_schema(theme)    
@@ -64,6 +74,16 @@ def use_theme(theme):
         alt.themes.enable(theme)
 
 def use_theme_custom(theme,json_file):
+    """
+    Create a custom theme using a json_file
+
+    Parameters
+    -----------
+    theme : string
+        name of theme to create
+    json_file : string
+        path to json defining theme
+    """
     
     try:
         with open(json_file) as f:
@@ -73,6 +93,18 @@ def use_theme_custom(theme,json_file):
         print('there was a problem registering your theme')
     
 def theme_mod(theme, theme_mods, new_theme=None):
+    """
+    Make a modification to one of the alshain themes. 
+
+    Parameters
+    -----------
+    theme : string 
+        name of alshain theme to modify 
+    theme_mods : dict
+        dictionary with theme modifications 
+    new_theme : string
+        name for the new theme if none specified "_mod" will be appended to original theme name
+    """
 
     if new_theme == None:
         new_theme = "{}_mod".format(theme)
@@ -80,6 +112,7 @@ def theme_mod(theme, theme_mods, new_theme=None):
     base_schema = load_schema(theme)
     
     #add theme_mods sanity checks?
+    # check for 'config' key
 
     updated_schema = theme_update(base_schema,theme_mods)
 
@@ -87,6 +120,17 @@ def theme_mod(theme, theme_mods, new_theme=None):
     alt.themes.enable(new_theme)
 
 def theme_test(chart, theme):
+    """
+    Make a modification to one of the alshain themes. 
+
+    Parameters
+    -----------
+    chart : altair chart object 
+        object defining altair chart schema
+    theme : string
+        name of theme to test on chart 
+    """
+
     chart_dict = chart.to_dict()
     theme_schema = load_schema(theme)
     chart_dict['config'] = theme_schema['config']
