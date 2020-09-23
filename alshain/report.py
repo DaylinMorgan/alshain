@@ -15,10 +15,7 @@ class Report(object):
         #self.title = title
         self.charts = {}
         
-        
-        
     def add_chart(self, chart, title=None, skip_df_check=False):
-
         """
         Make a master report in the form of an html of all altair chart objects. 
 
@@ -28,7 +25,6 @@ class Report(object):
             the chart to add to master report  
         title : string
             title for individual chart
-
         """
         
         if len(self.charts) == 0:
@@ -46,8 +42,6 @@ class Report(object):
         #check if chart is defined by dataframe -> will this work if it is big? 
             if not isinstance(chart.data, pd.DataFrame):
                 raise ValueError('Data in this chart object is not a pandas DataFrame, if using als.getURL() set return_df=True')
-                          
-            
         
         #altair defaults to keeping datasets below 5000 rows for good reason but let's ignore for making reports
         with alt.data_transformers.disable_max_rows():
@@ -60,12 +54,11 @@ class Report(object):
         
     def chart_list(self):
         """
-        
         Make a pretty looking table of the defined chart objects 
 
         Parameters
         -----------
-        Nonecha
+        None
         
         """
         
