@@ -2,3 +2,4 @@ include *.md
 include LICENSE
 include requirements.txt
 recursive-include alshain/templates *
+recursive-include alshain/themes/theme_jsons *

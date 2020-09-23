@@ -1,8 +1,7 @@
-__version__ = "0.1dev0"
-
-
+__version__ = "0.1"
 
 from .report import *
 from .utils import *
+from .themes import *
 
 global base_url

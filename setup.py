@@ -41,18 +41,18 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 
 
 # From https://github.com/jupyterlab/jupyterlab/blob/master/setupbase.py, BSD licensed
-#def find_packages(top=HERE):
-#   """
-#   Find all of the packages.
-#    """
-#    packages = []
-#    for d, dirs, _ in os.walk(top, followlinks=True):
-#       if os.path.exists(os.path.join(d, "__init__.py")):
-#            packages.append(os.path.relpath(d, top).replace(os.path.sep, "."))
-#        elif d != top:
-#            # Do not look for packages in subfolders if current is not a package
-#            dirs[:] = []
-#    return packages
+def find_packages(top=HERE):
+    """
+    Find all of the packages.
+    """
+    packages = []
+    for d, dirs, _ in os.walk(top, followlinks=True):
+        if os.path.exists(os.path.join(d, "__init__.py")):
+            packages.append(os.path.relpath(d, top).replace(os.path.sep, "."))
+        #elif d != top:
+            # Do not look for packages in subfolders if current is not a package
+            #dirs[:] = []
+    return packages
 
 
 setup(
@@ -65,8 +65,8 @@ setup(
     author_email="daylinmorgan@gmail.com",
     download_url="http://github.com/DaylinMorgan/alshain/",
     license="BSD 3-clause",
-    #packages=find_packages(),
-    packages=['alshain'],
+    packages=find_packages(),
+    #packages=['alshain'],
     include_package_data=True,
     install_requires=get_install_requirements("requirements.txt"),
     python_requires=">=3.6",

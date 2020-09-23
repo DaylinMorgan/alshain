@@ -1,0 +1,15 @@
+
+{
+    "config": {
+        "view": {
+            "strokeWidth" : 0,
+            "height": 300,
+            "width": 400
+        },
+        "axis": {
+            "grid" : false,
+            "labelFontSize" : 15,
+            "titleFontSize" : 15
+        }
+    }
+}
