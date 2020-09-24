@@ -110,3 +110,5 @@ def getURL(df, filename=None,return_df=False):
     url = base_url + '/alshain_jsons/' + filename
     
     return url 
+
+    # TODO: create single chart save function that will add the 'embed options' parameter ... or use a different jinja template? 

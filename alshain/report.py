@@ -48,10 +48,7 @@ class Report(object):
             spec = json.dumps(chart.to_dict())
         
         self.charts[chart_id] = { title : spec }
-        
-        
-        
-        
+         
     def chart_list(self):
         """
         Make a pretty looking table of the defined chart objects 
@@ -61,8 +58,7 @@ class Report(object):
         None
         
         """
-        
-        
+
         chart_info={}
         for key, value in  self.charts.items():
             for k,v in self.charts[key].items():
@@ -80,12 +76,7 @@ class Report(object):
             title_max = 30
         mark_max = df_info[1].str.len().max()
         tbl_len = title_max + mark_max + 3
-        
-        
-        
-        
-        
-        
+
         header = 'Chart' + ' '*(tbl_len-9) + 'Mark'
         line = '='* tbl_len
         print(header)
@@ -100,9 +91,7 @@ class Report(object):
             row = chart_title + space1 + ' | ' + space2 + marks
             print(row)
         
-        
-        
-         
+  
     def save(self, filename = 'master_report.html', title = 'Master Report'):
         """
         Make a master report in the form of an html of all altair chart objects. 
@@ -117,6 +106,9 @@ class Report(object):
             title for overall master report
 
         """
+
+        # TODO: add a comment under title or at the bottom of page with compile date using datetime 
+        # use a seperate block for this?
 
         #make jinja evnironment
         env = Environment(

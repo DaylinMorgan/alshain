@@ -53,7 +53,7 @@ def bulk_theme_registration(themes):
     alt.themes.enable('my_default')
 
 def use_theme(theme):
-        """
+    """
     Make a termporary theme by modifying one of the alshain themes. 
 
     Parameters
@@ -84,7 +84,7 @@ def use_theme_custom(theme,json_file):
     json_file : string
         path to json defining theme
     """
-    
+
     try:
         with open(json_file) as f:
             schema = json.load(f)
