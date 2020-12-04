@@ -104,11 +104,9 @@ class Report(object):
             file in which to save all the chart objects
         title : string
             title for overall master report
-
         """
 
         # TODO: add a comment under title or at the bottom of page with compile date using datetime 
-        # use a seperate block for this?
 
         #make jinja evnironment
         env = Environment(

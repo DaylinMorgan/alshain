@@ -58,7 +58,7 @@ def find_packages(top=HERE):
 setup(
     name="alshain",
     version=version("alshain/__init__.py"),
-    description="alshain: helper scripts for a superior altair experience",
+    description="alshain: helper scripts for an enhanced altair viz experience",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="Daylin Morgan",
@@ -66,11 +66,9 @@ setup(
     download_url="http://github.com/DaylinMorgan/alshain/",
     license="BSD 3-clause",
     packages=find_packages(),
-    #packages=['alshain'],
     include_package_data=True,
     install_requires=get_install_requirements("requirements.txt"),
     python_requires=">=3.6",
-    #extras_require={"dev": get_install_requirements("requirements_dev.txt")},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",

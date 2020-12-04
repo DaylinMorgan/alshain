@@ -1,8 +1,9 @@
 import os
 import sys
 
-global base_url
-base_url = None
+# TODO: create single chart save function that will add the 'embed options' parameter ... or use a different jinja template? 
+this = sys.modules[__package__]
+this.base_url = None
 
 def splitall(path):
     allparts = []
@@ -65,7 +66,7 @@ def find_path(directory,list_o_dir):
     
                     
                     
-def getURL(df, filename=None,return_df=False):
+def getURL(df, filename=None,return_df=False, method = None):
     """
     Generate json objects and return a url to inline display altair charts with large dataframes.
 
@@ -79,7 +80,6 @@ def getURL(df, filename=None,return_df=False):
         return the dataframe that is passed instead of url
 
     """
-    global base_url
     #change the way filename is defined to be semi-random
     if return_df==True:
         return df
@@ -88,14 +88,12 @@ def getURL(df, filename=None,return_df=False):
         os.mkdir('alshain_jsons')
 
     if filename == None:
-        filename = filename_gen(df)
-        
-    if base_url == None:
-        tmp_path = find_path(os.getenv('HOME'),splitall(os.getcwd()))
-        
-        base_url = 'http://localhost:8888/tree' + tmp_path.split(os.getenv('HOME'))[1]
-        
-        print("Setting base_url as: {}".format(base_url))
+        filename = filename_gen(df)  
+    
+    if this.base_url == None:
+        base_url = set_base_url(method = method)
+    else:
+        base_url = this.base_url
 
     name, ext = os.path.splitext(filename)
     if ext == '':
@@ -103,12 +101,28 @@ def getURL(df, filename=None,return_df=False):
     elif ext != '.json':  
         raise ValueError('filenames must use extension .json')
     
-    
     df.to_json('alshain_jsons/' + filename, orient='records')
 
-        
-    url = base_url + '/alshain_jsons/' + filename
+    url = base_url + filename
     
     return url 
 
-    # TODO: create single chart save function that will add the 'embed options' parameter ... or use a different jinja template? 
+
+def set_base_url(base_url = None, method = None):
+
+    if base_url == None:
+        if method == 'jupyterlab':   
+            tmp_path = find_path(os.getenv('HOME'),splitall(os.getcwd()))
+            base_url = 'http://localhost:8888/tree' + tmp_path.split(os.getenv('HOME'))[1] + '/alshain_jsons/'
+
+        elif method == 'vscode':
+            base_url = 'alshain_jsons/'
+
+        else:
+            raise ValueError(
+        """please select from available methods: jupyterlab or vscode
+        otherwise manually set the base_url for serving jsons""")
+    
+    print("Setting base_url as: {}".format(base_url))
+    return base_url
+
